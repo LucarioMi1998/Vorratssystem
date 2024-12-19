@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorratstracker</title>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorratstracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"] {
+            padding: 8px;
+            margin: 5px;
+            width: 20%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .add-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .delete-btn {
+            background-color: red;
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vorratstracker</h1>
+
+        <div class="add-row">
+            <input type="text" id="itemName" placeholder="Artikelname">
+            <input type="number" id="itemQuantity" placeholder="Menge">
+            <input type="date" id="itemExpiry">
+            <button onclick="addItem()">Hinzufügen</button>
+        </div>
+
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Artikelname</th>
+                    <th>Menge</th>
+                    <th>Ablaufdatum</th>
+                    <th>Aktionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Hier werden die Vorräte angezeigt -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Funktion zum Hinzufügen eines neuen Vorrats
+        function addItem() {
+            const name = document.getElementById("itemName").value;
+            const quantity = document.getElementById("itemQuantity").value;
+            const expiry = document.getElementById("itemExpiry").value;
+
+            if (name && quantity && expiry) {
+                const table = document.getElementById("inventoryTable").getElementsByTagName('tbody')[0];
+                const row = table.insertRow();
+
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+
+                cell1.textContent = name;
+                cell2.textContent = quantity;
+                cell3.textContent = expiry;
+                cell4.innerHTML = `<button class="delete-btn" onclick="deleteItem(this)">Löschen</button>`;
+
+                // Eingabefelder zurücksetzen
+                document.getElementById("itemName").value = "";
+                document.getElementById("itemQuantity").value = "";
+                document.getElementById("itemExpiry").value = "";
+            } else {
+                alert("Bitte alle Felder ausfüllen!");
+            }
+        }
+
+        // Funktion zum Löschen eines Vorrats
+        function deleteItem(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorratstracker</title>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+                console.log('Service Worker registriert:', registration);
+            }).catch((error) => {
+                console.log('Service Worker Registrierung fehlgeschlagen:', error);
+            });
+        }
+    </script>
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+            console.log('Service Worker registriert:', registration);
+        }).catch((error) => {
+            console.log('Service Worker Registrierung fehlgeschlagen:', error);
+        });
+    }
+</script>
+

@@ -1,0 +1,21 @@
+{
+    "name": "Vorratstracker",
+    "short_name": "Vorratstracker",
+    "description": "Tracke deine Vorräte einfach.",
+    "start_url": "index.html",
+    "display": "standalone",  // Sorgt dafür, dass die App wie eine native App aussieht
+    "background_color": "#ffffff",  // Hintergrundfarbe der App
+    "theme_color": "#4CAF50",  // Farbthema der App (z. B. grüner Header)
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
